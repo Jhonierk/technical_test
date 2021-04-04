@@ -21,7 +21,24 @@
               <div class="col-lg-6">
                 <div class="p-5">
                   <div class="text-center">
-                    <h1 class="h4 text-gray-900 mb-4">Welcome Holbie!</h1>
+                    <h1 class="h4 text-gray-900 mb-4">Welcome the shop!</h1>
+                    <small class="text-danger">
+                      {% if form.errors %}
+                          {% for field in form %}
+                              {% if field.error %}
+                                  {% for error in field.error %}
+                                      {{ error|escape }}
+                                  {% endfor %}
+                              {% endif %}
+                          {% endfor %}
+
+                          {% if form.non_field_errors %}
+                              {% for error in form.non_field_errors %}
+                                  {{ error|escape }}
+                              {% endfor %}
+                          {% endif %}
+                      {% endif %}
+                    </small>
                   </div>
                   <form class="user" method="POST">
                     {% csrf_token %}
